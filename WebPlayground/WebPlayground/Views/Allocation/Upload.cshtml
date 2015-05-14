@@ -1,0 +1,72 @@
+﻿@model IEnumerable<WebPlayground.Controllers.Allocation>
+
+<br/>
+<div class="panel  panel-primary">
+    <div class="panel-heading">Data Validations</div>
+    <div class="panel-body">
+        The data shown below has been parsed from the file provided. Highlighted rows have validation errors. Click Next to save the data to Argos.
+    </div>
+</div>
+<div id="grid"></div>
+
+<br />
+<div class="btn-group" style="float: right">
+    <div class="btn btn-default">Back</div>
+    <div class="btn btn-default">Next</div>
+    <div class="btn btn-default">Cancel</div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        var dataSource = new kendo.data.DataSource({
+            data: @Html.Raw(Json.Encode(@Model)),
+            pageSize: 10,
+            //group: {field: "AccountId"}
+            });
+
+        $("#grid").kendoGrid({
+            dataSource: dataSource,
+            columns: [
+                {
+                    field: "AccountId",
+                    title: "Account ID"
+                },
+                {
+                    field: "Model",
+                    title: "Model"
+                },
+                {
+                    field: "Weight",
+                    title: "Weight",
+                    template: '#=kendo.format("{0:p}", Weight / 100)#'
+                },
+                {
+                    field: "PreserveDrift",
+                    title: "Preserve Drift",
+                    template: '<input type="checkbox" #= PreserveDrift ? "checked=checked" : "" # disabled="disabled" ></input>'
+                },
+                {
+                    field: "Message",
+                    title: "Message"
+                }
+            ],
+            sortable: true,
+            filterable: true,
+            groupable: true,
+            scrollable: false,
+            columnMenu: true,
+            pageable: {
+                buttonCount: 5,
+                pageSizes: [5, 10, 25, 100, 1000, 10000]
+            },
+            toolbar: ["excel"],
+            excel: {
+                fileName: "TestFile.xlsx",
+                allPages: true,
+                filterable: true,
+            }
+    });
+    });
+</script>

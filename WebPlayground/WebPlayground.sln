@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebPlayground", "WebPlayground\WebPlayground.csproj", "{B3D9C6B7-5712-4AFA-8D66-8E1024FCD210}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B3D9C6B7-5712-4AFA-8D66-8E1024FCD210}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3D9C6B7-5712-4AFA-8D66-8E1024FCD210}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3D9C6B7-5712-4AFA-8D66-8E1024FCD210}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3D9C6B7-5712-4AFA-8D66-8E1024FCD210}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

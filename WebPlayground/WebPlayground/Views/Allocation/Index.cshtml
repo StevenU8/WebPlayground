@@ -1,0 +1,31 @@
+﻿
+<br />
+<div class="panel panel-primary">
+    <div class="panel-heading">Argos Uploader</div>
+
+    <div class="panel-body">
+
+        <form class="container" method="post" action="@Url.Action("Upload", "Allocation")">
+
+            <div class="fileSelector">
+                <h4>Select Upload File:</h4>
+                <input class="btn btn-lg" type="file" name="name" value=" "/>
+                <br/>
+            </div>
+            <h4>Designate Upload File Type:</h4>
+            <div class="dropdown" style="margin-left: 15px;">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                    Upload File Types
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Open Program Model Allocations</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Restrictions</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">etc...</a></li>
+                </ul>
+            </div>
+
+            <input class="btn btn-lg" type="submit" value="Upload" style="float: right"/>
+        </form>
+    </div>
+</div>
