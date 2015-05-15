@@ -27,6 +27,11 @@ namespace WebPlayground.Controllers
 
             return View(allocations);
         }
+
+        public ActionResult Process()
+        {
+            return View();
+        }
     }
 
 

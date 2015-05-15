@@ -11,9 +11,11 @@
 
 <br />
 <div class="btn-group" style="float: right">
-    <div class="btn btn-default">Back</div>
-    <div class="btn btn-default">Next</div>
-    <div class="btn btn-default">Cancel</div>
+    
+    <input class="btn btn-default" type="button" value="Back" onclick="" />
+    <input class="btn btn-default" type="button" value="Next" onclick="location.href='@Url.Action("Process", "Allocation" )'" />
+    <input class="btn btn-default" type="button" value="Cancel" onclick="" />
+
 </div>
 
 
@@ -24,7 +26,7 @@
             data: @Html.Raw(Json.Encode(@Model)),
             pageSize: 10,
             //group: {field: "AccountId"}
-            });
+        });
 
         $("#grid").kendoGrid({
             dataSource: dataSource,
@@ -67,6 +69,6 @@
                 allPages: true,
                 filterable: true,
             }
-    });
+        });
     });
 </script>
