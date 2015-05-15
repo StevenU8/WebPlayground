@@ -26,6 +26,8 @@
     </button>
     <div id="invalid" class="collapse in">
         <div id="gridInvalid"></div>
+        <input type="button" onclick="collapseAll()" value="Collapse All" />
+        <input type="button" onclick="expandAll()" value="Expand All" />
     </div>
 </div>
 
@@ -94,6 +96,9 @@
 
         $("#gridInvalid").kendoGrid({
             dataSource: invalidAccountAllocations,
+            dataBound: function (e) {
+                collapseAllGroups(this);
+            },
             columns: [
                 {
                     field: "AccountId",
@@ -136,6 +141,24 @@
         });
     });
 
-    
+    var collapseAllGroups = function (grid) {
+        grid.table.find(".k-grouping-row").each(function () {
+            grid.collapseGroup(this);
+        });
+    }
+
+    function collapseAll() {
+        var grid = $("#gridInvalid").data("kendoGrid");
+        grid.table.find(".k-grouping-row").each(function () {
+            grid.collapseGroup(this);
+        });
+    }
+    function expandAll() {
+        var grid = $("#gridInvalid").data("kendoGrid");
+        grid.table.find(".k-grouping-row").each(function () {
+            grid.expandGroup(this);
+        });
+    }
+
 </script>
 
