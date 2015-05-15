@@ -48,19 +48,10 @@
                             width: "110px"
                         }],
                     sortable: true,
-                    filterable: true,
-                    groupable: true,
                     scrollable: false,
-                    columnMenu: true,
                     pageable: {
                         buttonCount: 5,
                         pageSizes: [5, 10, 25, 100, 1000, 10000]
-                    },
-                    toolbar: ["excel"],
-                    excel: {
-                        fileName: "TestFile.xlsx",
-                        allPages: true,
-                        filterable: true,
                     }
                 });
             });
@@ -77,7 +68,10 @@
                     dataSource: allocations,
                     scrollable: false,
                     sortable: true,
-                    pageable: true,
+                    pageable: {
+                        buttonCount: 5,
+                        pageSizes: [5, 10, 25, 100, 1000, 10000]
+                    },
                     columns: [
                         {
                             field: "AccountId",
@@ -98,10 +92,16 @@
                             template: '<input type="checkbox" #= PreserveDrift ? "checked=checked" : "" # disabled="disabled" ></input>'
                         },
                         {
-                            field: "ValidationMessage",
+                            field: "Message",
                             title: "Message"
                         }
                     ],
+                    toolbar: ["excel"],
+                    excel: {
+                        fileName: "detail.xlsx",
+                        allPages: true,
+                        filterable: true,
+                    }
                 });
             }
         </script>

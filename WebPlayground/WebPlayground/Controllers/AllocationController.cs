@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.WebPages;
 using FizzWare.NBuilder;
 using Microsoft.SqlServer.Server;
+using Newtonsoft.Json;
 
 namespace WebPlayground.Controllers
 {
@@ -21,6 +22,8 @@ namespace WebPlayground.Controllers
         {
             var allocations = GetFakeAllocations();
 
+            var jsonAllocations = JsonConvert.SerializeObject(allocations);
+
             return View(allocations);
         }
         
@@ -35,7 +38,7 @@ namespace WebPlayground.Controllers
                     {
                         AccountId = b.Key,
                         HasErrors =
-                            allocations.Where(a => a.AccountId == b.Key).Any(a => !a.ValidationMessage.IsEmpty())
+                            allocations.Where(a => a.AccountId == b.Key).Any(a => !a.Message.IsEmpty())
                     };
                 });
                     
@@ -58,7 +61,7 @@ namespace WebPlayground.Controllers
                     return new AccountAllocation
                     {
                         AccountId = b.Key,
-                        HasErrors = allocations.Where(a => a.AccountId == b.Key).Any(a => !a.ValidationMessage.IsEmpty())
+                        HasErrors = allocations.Where(a => a.AccountId == b.Key).Any(a => !a.Message.IsEmpty())
                     };
                 })
                 .ToList();
@@ -80,9 +83,9 @@ namespace WebPlayground.Controllers
         private static IEnumerable<Allocation> GetFakeAllocations()
         {
             return Builder<Allocation>
-                .CreateListOfSize(1000)
+                .CreateListOfSize(20000)
                 .All().Do(a => a.AccountId = (((int)a.Weight % 20 + 1) * 12345).ToString())
-                .All().Do(a => a.ValidationMessage = (int)a.Weight % 8 == 0 ? "Validation Error" : "")
+                .All().Do(a => a.Message = (int)a.Weight % 8 == 0 ? "Validation Error" : "")
                 .Build()
                 .AsEnumerable();
         }
@@ -100,7 +103,7 @@ namespace WebPlayground.Controllers
         public string Model { get; set; }
         public double Weight { get; set; }
         public bool PreserveDrift { get; set; }
-        public string ValidationMessage { get; set; }
+        public string Message { get; set; }
     }
 
     public class AllocationViewModel2

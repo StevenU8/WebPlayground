@@ -25,15 +25,27 @@
                 </ul>
             </div>
 
-            <input class="btn btn-default" type="button" value="Next (Upload1)" onclick="location.href = '@Url.Action("Upload", "Allocation")'" style="float: right"/>
+            <input class="btn btn-default" type="button" value="Next (Option 1)" onclick="location.href = '@Url.Action("Upload", "Allocation")'" style="float: right"/>
             <br/>
-            <br />
-            <input class="btn btn-default" type="button" value="Next (Upload2)" onclick="location.href = '@Url.Action("Upload2", "Allocation")'" style="float: right"/>
             <br/>
-            <br />
-            <input class="btn btn-default" type="button" value="Next (Upload3)" onclick="location.href='@Url.Action("Upload3", "Allocation" )'" style="float: right"/>
+            <input class="btn btn-default" type="button" value="Next (Option 2)" onclick="location.href = '@Url.Action("Upload2", "Allocation")'" style="float: right" />
+            <br/>
+            <br/>
+            <input class="btn btn-default" type="button" value="Next (Option 3)" onclick="location.href = '@Url.Action("Upload3", "Allocation")'" style="float: right" />
+
             @*<input class="btn btn-lg" type="submit" value="Upload" style="float: right"/>
             <input class="btn btn-lg" type="submit" value="Upload" style="float: right"/>*@
         </form>
+
+        <div>
+            <br /><br /><br />
+            <ul>
+                <li>Options 1 and 2 would not be an ideal workflow if we still want to be able to upload valid accounts and display invalid accounts.</li>
+                <li>Option 1 would not be able to give summary info such as accound level validation status</li>
+                <li>Option 2 works better for grouping and sorting than option 1, but we would only be able to leverage excel export on an account by account basis.</li>
+                <li>Option 3 enables us to upload valid data and display errors seperately to be exported to excel in order to fix and re-upload. No need for success page on this option.</li>
+                <li></li>
+            </ul>
+        </div>
     </div>
 </div>
