@@ -25,7 +25,7 @@
         var dataSource = new kendo.data.DataSource({
             data: @Html.Raw(Json.Encode(@Model)),
             pageSize: 10,
-            //group: {field: "AccountId"}
+            group: {field: "AccountId"}
         });
 
         $("#grid").kendoGrid({
@@ -50,7 +50,7 @@
                     template: '<input type="checkbox" #= PreserveDrift ? "checked=checked" : "" # disabled="disabled" ></input>'
                 },
                 {
-                    field: "Message",
+                    field: "ValidationMessage",
                     title: "Message"
                 }
             ],

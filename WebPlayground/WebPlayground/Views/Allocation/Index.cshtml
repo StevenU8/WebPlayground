@@ -5,7 +5,7 @@
 
     <div class="panel-body">
 
-        <form class="container" method="post" action="@Url.Action("Upload", "Allocation")">
+        <form class="container" method="post" @*action="@Url.Action("Upload", "Allocation)"*@>
 
             <div class="fileSelector">
                 <h4>Select Upload File:</h4>
@@ -25,7 +25,15 @@
                 </ul>
             </div>
 
-            <input class="btn btn-lg" type="submit" value="Upload" style="float: right"/>
+            <input class="btn btn-default" type="button" value="Next (Upload1)" onclick="location.href = '@Url.Action("Upload", "Allocation")'" style="float: right"/>
+            <br/>
+            <br />
+            <input class="btn btn-default" type="button" value="Next (Upload2)" onclick="location.href = '@Url.Action("Upload2", "Allocation")'" style="float: right"/>
+            <br/>
+            <br />
+            <input class="btn btn-default" type="button" value="Next (Upload3)" onclick="location.href='@Url.Action("Upload3", "Allocation" )'" style="float: right"/>
+            @*<input class="btn btn-lg" type="submit" value="Upload" style="float: right"/>
+            <input class="btn btn-lg" type="submit" value="Upload" style="float: right"/>*@
         </form>
     </div>
 </div>

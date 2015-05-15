@@ -1,0 +1,134 @@
+﻿@model WebPlayground.Controllers.AllocationViewModel3
+
+<br />
+<div class="panel  panel-primary">
+    <div class="panel-heading">Data Validations</div>
+    <div class="panel-body">
+        The data shown below has been parsed from the file provided. Highlighted rows have validation errors. Click Next to save the data to Argos.
+    </div>
+</div>
+
+<div class="container">
+    <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#success" style="width: 100%; text-align: left;">Successfully Uploaded</button>
+    <div id="success" class="collapse">
+        <div id="gridValid"></div>
+    </div>
+</div>
+
+<br />
+<div class="container">
+    <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#invalid" style="width: 100%; text-align: left;">The Following Accounts Have Errors</button>
+    <div id="invalid" class="collapse">
+        <div id="gridInvalid"></div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function() {
+
+        var validAccountAllocations = new kendo.data.DataSource({
+            data: @Html.Raw(Json.Encode(@Model.ValidAllocations)),
+            pageSize: 10,
+            sort: { field: "AccountId"},
+            group: { field: "AccountId"}
+        });
+
+        var invalidAccountAllocations = new kendo.data.DataSource({
+            data: @Html.Raw(Json.Encode(@Model.InvalidAllocations)),
+            pageSize: 10,
+            sort: { field: "AccountId", dir: "desc" },
+            group: { field: "AccountId"}
+        });
+
+        
+        $("#gridValid").kendoGrid({
+            dataSource: validAccountAllocations,
+            columns: [
+                {
+                    field: "AccountId",
+                    title: "Account ID"
+                },
+                {
+                    field: "Model",
+                    title: "Model"
+                },
+                {
+                    field: "Weight",
+                    title: "Weight",
+                    template: '#=kendo.format("{0:p}", Weight / 100)#'
+                },
+                {
+                    field: "PreserveDrift",
+                    title: "Preserve Drift",
+                    template: '<input type="checkbox" #= PreserveDrift ? "checked=checked" : "" # disabled="disabled" ></input>'
+                },
+                {
+                    field: "ValidationMessage",
+                    title: "Message"
+                }
+            ],
+            sortable: true,
+            filterable: true,
+            groupable: true,
+            scrollable: false,
+            columnMenu: true,
+            pageable: {
+                buttonCount: 5,
+                pageSizes: [5, 10, 25, 100, 1000, 10000]
+            },
+            toolbar: ["excel"],
+            excel: {
+                fileName: "Valid.xlsx",
+                allPages: true,
+                filterable: true,
+            }
+        });
+
+
+        $("#gridInvalid").kendoGrid({
+            dataSource: invalidAccountAllocations,
+            columns: [
+                {
+                    field: "AccountId",
+                    title: "Account ID"
+                },
+                {
+                    field: "Model",
+                    title: "Model"
+                },
+                {
+                    field: "Weight",
+                    title: "Weight",
+                    template: '#=kendo.format("{0:p}", Weight / 100)#'
+                },
+                {
+                    field: "PreserveDrift",
+                    title: "Preserve Drift",
+                    template: '<input type="checkbox" #= PreserveDrift ? "checked=checked" : "" # disabled="disabled" ></input>'
+                },
+                {
+                    field: "ValidationMessage",
+                    title: "Message"
+                }
+            ],
+            sortable: true,
+            filterable: true,
+            groupable: true,
+            scrollable: false,
+            columnMenu: true,
+            pageable: {
+                buttonCount: 5,
+                pageSizes: [5, 10, 25, 100, 1000, 10000]
+            },
+            toolbar: ["excel"],
+            excel: {
+                fileName: "Invalid.xlsx",
+                allPages: true,
+                filterable: true,
+            }
+        });
+    });
+
+</script>
+
